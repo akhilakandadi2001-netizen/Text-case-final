@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TextShift – Free Online Case Converter & Text Tools</title>
+  <meta name="description" content="Free online text case converter. Convert text to UPPER CASE, lower case, Title Case, camelCase, snake_case and more. No signup needed — instant results."/>
+  <meta name="keywords" content="case converter, text converter, uppercase converter, lowercase converter, title case, camel case, snake case, kebab case, text tools"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="author" content="TextShift"/>
+  <meta property="og:title" content="TextShift – Free Online Case Converter"/>
+  <meta property="og:description" content="Convert text to any case instantly. Free, fast, no signup required."/>
+  <meta property="og:type" content="website"/>
+  <link rel="canonical" href="https://textshift.tools/"/>
+  <!-- ADSENSE: uncomment after approval and replace Publisher ID
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#0c0c10;--surface:#14141a;--card:#1a1a23;--border:#2a2a38;--accent:#6af0a0;--accent2:#a78bfa;--text:#e8e8f0;--muted:#666680;--mono:'DM Mono',monospace;--sans:'Instrument Sans',sans-serif;--display:'Syne',sans-serif;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;overflow-x:hidden;line-height:1.6;}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,240,160,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,240,160,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+    .blob{position:fixed;border-radius:50%;filter:blur(100px);opacity:.10;pointer-events:none;z-index:0;}
+    .blob-1{width:500px;height:500px;background:var(--accent);top:-150px;left:-100px;}
+    .blob-2{width:400px;height:400px;background:var(--accent2);bottom:-100px;right:-80px;}
+    .page{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 20px 60px;}
+    header{display:flex;align-items:center;justify-content:space-between;padding:28px 0 20px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+    .logo{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.04em;}
+    .logo span{color:var(--accent);}
+    .logo-tag{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-top:2px;}
+    nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+    .nav-pill{font-family:var(--mono);font-size:.7rem;padding:5px 12px;border:1px solid var(--border);border-radius:100px;color:var(--muted);text-decoration:none;cursor:pointer;transition:all .2s;}
+    .nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);}
+    .adsense-slot{width:100%;min-height:90px;margin-bottom:28px;text-align:center;overflow:hidden;}
+    .adsense-label{font-family:var(--mono);font-size:.55rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px;text-align:left;}
+    .hero{text-align:center;margin-bottom:32px;}
+    .hero h1{font-family:var(--display);font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:12px;}
+    .hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero p{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto;line-height:1.7;}
+    .tool-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:20px;box-shadow:0 0 60px rgba(106,240,160,.04);}
+    .tool-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02);}
+    .tool-label{font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+    .char-count{font-family:var(--mono);font-size:.75rem;color:var(--muted);}
+    .char-count span{color:var(--accent);}
+    textarea{width:100%;min-height:180px;background:transparent;border:none;outline:none;padding:20px;font-family:var(--mono);font-size:.95rem;color:var(--text);resize:vertical;line-height:1.7;}
+    textarea::placeholder{color:var(--muted);}
+    .buttons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;padding:16px 20px 20px;border-top:1px solid var(--border);background:rgba(0,0,0,.15);}
+    .case-btn{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 10px;color:var(--text);font-family:var(--sans);font-size:.8rem;font-weight:500;cursor:pointer;transition:all .18s;text-align:center;}
+    .case-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);}
+    .case-btn.active{border-color:var(--accent);background:rgba(106,240,160,.08);color:var(--accent);}
+    .btn-preview{display:block;font-family:var(--mono);font-size:.65rem;color:var(--muted);margin-top:4px;transition:color .18s;}
+    .case-btn:hover .btn-preview,.case-btn.active .btn-preview{color:var(--accent);opacity:.7;}
+    .stats-bar{display:flex;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;}
+    .stat-item{flex:1;padding:14px 16px;background:var(--card);text-align:center;border-right:1px solid var(--border);}
+    .stat-item:last-child{border-right:none;}
+    .stat-val{font-family:var(--display);font-size:1.4rem;font-weight:700;color:var(--accent);}
+    .stat-lbl{font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+    .output-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:28px;}
+    .output-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02);}
+    .output-mode{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.75rem;color:var(--accent);}
+    .mode-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+    .output-actions{display:flex;gap:8px;}
+    .action-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-family:var(--mono);font-size:.7rem;color:var(--muted);cursor:pointer;transition:all .18s;}
+    .action-btn:hover{border-color:var(--accent);color:var(--accent);}
+    .action-btn.copy-success{border-color:var(--accent);color:var(--accent);}
+    .output-text{padding:20px;font-family:var(--mono);font-size:.95rem;line-height:1.7;min-height:100px;color:var(--text);word-break:break-word;white-space:pre-wrap;}
+    .output-text.empty{color:var(--muted);font-style:italic;}
+    .section-title{font-family:var(--display);font-size:1.1rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+    .section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+    .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:32px;}
+    .tool-link{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;text-decoration:none;color:var(--text);font-size:.82rem;font-weight:500;transition:all .18s;display:flex;align-items:center;gap:8px;}
+    .tool-link:hover{border-color:var(--accent2);color:var(--accent2);transform:translateY(-2px);}
+    .content-section{margin-bottom:32px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;}
+    .content-section h2{font-family:var(--display);font-size:1.4rem;font-weight:700;margin-bottom:16px;}
+    .content-section h3{font-family:var(--display);font-size:1rem;font-weight:700;margin:20px 0 8px;color:var(--accent);}
+    .content-section p{color:#b0b0c8;line-height:1.8;margin-bottom:14px;font-size:.92rem;}
+    .content-section ul{color:#b0b0c8;padding-left:20px;margin-bottom:14px;}
+    .content-section ul li{margin-bottom:8px;font-size:.92rem;line-height:1.7;}
+    .content-section code{font-family:var(--mono);background:var(--surface);padding:2px 8px;border-radius:4px;color:var(--accent);font-size:.85rem;}
+    .faq-item{border-bottom:1px solid var(--border);padding:16px 0;}
+    .faq-item:last-child{border-bottom:none;padding-bottom:0;}
+    .faq-q{font-family:var(--sans);font-weight:600;font-size:.95rem;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:none;border:none;width:100%;text-align:left;padding:0;}
+    .faq-q:hover{color:var(--accent);}
+    .faq-arrow{font-size:.8rem;color:var(--muted);transition:transform .2s;flex-shrink:0;margin-left:12px;}
+    .faq-a{color:#b0b0c8;font-size:.9rem;line-height:1.8;margin-top:10px;display:none;}
+    .faq-item.open .faq-a{display:block;}
+    .faq-item.open .faq-arrow{transform:rotate(180deg);}
+    .policy-section{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;margin-bottom:32px;}
+    .policy-section h2{font-family:var(--display);font-size:1.3rem;font-weight:700;margin-bottom:16px;}
+    .policy-section p{color:#b0b0c8;font-size:.88rem;line-height:1.8;margin-bottom:12px;}
+    .policy-section h3{font-size:.95rem;font-weight:600;color:var(--accent);margin:16px 0 8px;}
+    .toast{position:fixed;bottom:24px;right:24px;background:var(--accent);color:#000;padding:10px 20px;border-radius:10px;font-family:var(--mono);font-size:.8rem;font-weight:500;transform:translateY(80px);opacity:0;transition:all .3s ease;z-index:100;}
+    .toast.show{transform:translateY(0);opacity:1;}
+    footer{border-top:1px solid var(--border);padding-top:24px;text-align:center;font-family:var(--mono);font-size:.7rem;color:var(--muted);}
+    footer a{color:var(--muted);text-decoration:none;margin:0 6px;}
+    footer a:hover{color:var(--accent);}
+    .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
+    @media(max-width:640px){header{flex-direction:column;gap:14px;align-items:flex-start;}.buttons-grid{grid-template-columns:repeat(2,1fr);}.stats-bar{flex-wrap:wrap;}.stat-item{min-width:50%;border-bottom:1px solid var(--border);}.content-section,.policy-section{padding:20px;}}
+  </style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="toast" id="toast">✓ Copied to clipboard!</div>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo">Text<span>Shift</span></div>
+      <div class="logo-tag">Free Online Text Tools</div>
+    </div>
+    <nav>
+      <span class="nav-pill active">Case Converter</span>
+      <a class="nav-pill" href="#more-tools">More Tools</a>
+      <a class="nav-pill" href="#about">About</a>
+      <a class="nav-pill" href="#privacy">Privacy</a>
+      <a class="nav-pill" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!--
+  ═══════════════════════════════════════════════════════
+  ADSENSE SLOT 1 — Top Leaderboard (Responsive)
+  Step 1: Uncomment the <script> in <head> with your Publisher ID
+  Step 2: Uncomment the <ins> block below and set your ad-slot value
+  Step 3: Do NOT activate ads before Google approves your site
+  ═══════════════════════════════════════════════════════
+  <div class="adsense-label">Advertisement</div>
+  <div class="adsense-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  -->
+
+  <div class="hero">
+    <h1>Convert Text to <em>Any Case</em><br/>Instantly &amp; Free</h1>
+    <p>Paste your text below and click any conversion button. Supports UPPER, lower, Title, Sentence, camelCase, snake_case, kebab-case and more — no login, no limits.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-header">
+      <span class="tool-label">✏ Input Text</span>
+      <span class="char-count">Characters: <span id="charCount">0</span></span>
+    </div>
+    <textarea id="inputText" placeholder="Paste or type your text here… e.g. 'The Quick Brown Fox Jumps Over The Lazy Dog'" aria-label="Text input for case conversion"></textarea>
+    <div class="buttons-grid">
+      <button class="case-btn" onclick="convert('upper')" data-mode="upper">UPPER CASE<span class="btn-preview">HELLO WORLD</span></button>
+      <button class="case-btn" onclick="convert('lower')" data-mode="lower">lower case<span class="btn-preview">hello world</span></button>
+      <button class="case-btn" onclick="convert('sentence')" data-mode="sentence">Sentence case<span class="btn-preview">Hello world.</span></button>
+      <button class="case-btn" onclick="convert('title')" data-mode="title">Title Case<span class="btn-preview">Hello World</span></button>
+      <button class="case-btn" onclick="convert('camel')" data-mode="camel">camelCase<span class="btn-preview">helloWorld</span></button>
+      <button class="case-btn" onclick="convert('pascal')" data-mode="pascal">PascalCase<span class="btn-preview">HelloWorld</span></button>
+      <button class="case-btn" onclick="convert('snake')" data-mode="snake">snake_case<span class="btn-preview">hello_world</span></button>
+      <button class="case-btn" onclick="convert('kebab')" data-mode="kebab">kebab-case<span class="btn-preview">hello-world</span></button>
+      <button class="case-btn" onclick="convert('inverse')" data-mode="inverse">iNVERSE cASE<span class="btn-preview">hELLO wORLD</span></button>
+      <button class="case-btn" onclick="convert('alternate')" data-mode="alternate">aLtErNaTe<span class="btn-preview">hElLo wOrLd</span></button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-val" id="wordCount">0</div><div class="stat-lbl">Words</div></div>
+    <div class="stat-item"><div class="stat-val" id="charCount2">0</div><div class="stat-lbl">Chars</div></div>
+    <div class="stat-item"><div class="stat-val" id="sentCount">0</div><div class="stat-lbl">Sentences</div></div>
+    <div class="stat-item"><div class="stat-val" id="lineCount">0</div><div class="stat-lbl">Lines</div></div>
+    <div class="stat-item"><div class="stat-val" id="paraCount">0</div><div class="stat-lbl">Paragraphs</div></div>
+  </div>
+
+  <div class="output-card">
+    <div class="output-header">
+      <div class="output-mode"><div class="mode-dot"></div><span id="modeLabel">— Select a conversion above —</span></div>
+      <div class="output-actions">
+        <button class="action-btn" onclick="clearAll()">Clear</button>
+        <button class="action-btn" id="copyBtn" onclick="copyOutput()">Copy</button>
+      </div>
+    </div>
+    <div class="output-text empty" id="outputText">Your converted text will appear here…</div>
+  </div>
+
+  <!--
+  ═══════════════════════════════════════════════════════
+  ADSENSE SLOT 2 — Mid-Page Rectangle (Responsive)
+  ═══════════════════════════════════════════════════════
+  <div class="adsense-label">Advertisement</div>
+  <div class="adsense-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="rectangle"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  -->
+
+  <div id="more-tools"></div>
+  <div class="section-title">More Free Tools</div>
+  <div class="tools-grid">
+    <a href="#" class="tool-link">🔢 Word Counter</a>
+    <a href="#" class="tool-link">🔀 Sort Lines A–Z</a>
+    <a href="#" class="tool-link">🧹 Remove Duplicates</a>
+    <a href="#" class="tool-link">↔️ Reverse Text</a>
+    <a href="#" class="tool-link">🔑 Password Generator</a>
+    <a href="#" class="tool-link">🔗 URL Encode/Decode</a>
+    <a href="#" class="tool-link">📋 Remove Empty Lines</a>
+    <a href="#" class="tool-link">🔡 Slug Generator</a>
+  </div>
+
+  <div class="content-section">
+    <h2>What Is a Text Case Converter?</h2>
+    <p>A <strong>text case converter</strong> is a free online tool that instantly transforms typed or pasted text into a chosen letter-case format. Whether you are a developer naming variables, a writer styling headings, or a student formatting an essay, converting case manually is slow and error-prone. TextShift handles thousands of characters in milliseconds, directly in your browser — no data is ever sent to a server.</p>
+    <h3>Why Does Letter Case Matter?</h3>
+    <p>Consistent capitalisation improves readability, enforces coding conventions, and satisfies style guides like APA, Chicago, and MLA. Mismatched case in code can trigger compile errors or broken URL routes, while inconsistent capitalisation in documents looks unprofessional.</p>
+    <h3>All Supported Case Formats Explained</h3>
+    <ul>
+      <li><strong>UPPER CASE</strong> — Every character is capitalised. Useful for headings, acronyms, and emphasis. Example: <code>HELLO WORLD</code></li>
+      <li><strong>lower case</strong> — All characters are lowercased. Common for email addresses and normalising data. Example: <code>hello world</code></li>
+      <li><strong>Sentence case</strong> — Only the first letter of each sentence is capitalised, mimicking standard prose. Example: <code>Hello world. How are you?</code></li>
+      <li><strong>Title Case</strong> — Every major word is capitalised, following AP/Chicago style. Example: <code>Hello World</code></li>
+      <li><strong>camelCase</strong> — Words joined without spaces; every word after the first starts with a capital. Standard in JavaScript and Java. Example: <code>helloWorld</code></li>
+      <li><strong>PascalCase</strong> — Like camelCase but the first word is also capitalised. Used for class names in most OOP languages. Example: <code>HelloWorld</code></li>
+      <li><strong>snake_case</strong> — Words separated by underscores, all lowercase. Preferred in Python and database column names. Example: <code>hello_world</code></li>
+      <li><strong>kebab-case</strong> — Words separated by hyphens, all lowercase. Standard for CSS class names and URL slugs. Example: <code>hello-world</code></li>
+      <li><strong>iNVERSE cASE</strong> — Uppercase letters become lowercase and vice versa. Example: <code>hELLO wORLD</code></li>
+      <li><strong>aLtErNaTe cAsE</strong> — Characters alternate between lower and upper. Example: <code>hElLo wOrLd</code></li>
+    </ul>
+    <h3>How to Use TextShift</h3>
+    <p>Paste or type your text into the input box, then click any conversion button. The result appears instantly in the output panel. Use the <strong>Copy</strong> button to copy to clipboard, or <strong>Clear</strong> to reset. The stats bar shows word count, character count, sentences, lines, and paragraphs in real time.</p>
+    <h3>Is TextShift Free?</h3>
+    <p>Yes — completely free, with no account required. All conversions happen inside your browser using JavaScript, so your text stays private and nothing is transmitted over the internet.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Does this tool save or store my text?<span class="faq-arrow">▾</span></button>
+      <div class="faq-a">No. TextShift runs entirely in your browser. Your text is never uploaded to any server, stored in a database, or shared with third parties. You can verify this by using the tool without an internet connection after the page has loaded.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Is there a character limit?<span class="faq-arrow">▾</span></button>
+      <div class="faq-a">There is no hard character limit enforced by the tool. In practice, performance depends on your device's browser and available memory. Most modern devices handle several hundred thousand characters without any slowdown.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Why does snake_case remove some characters?<span class="faq-arrow">▾</span></button>
+      <div class="faq-a">By definition, snake_case and kebab-case identifiers must be valid code tokens. TextShift strips characters that are not letters, digits, or the separator character. If you need to preserve punctuation, use Sentence case or Title Case instead.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Which case format should I use for CSS class names?<span class="faq-arrow">▾</span></button>
+      <div class="faq-a">The HTML and CSS specification recommends kebab-case for CSS class names and IDs (e.g. <code>.my-button</code>). PascalCase is commonly used in CSS-in-JS environments like React and Vue. Use snake_case for Python Django template classes or BEM modifiers.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Can I convert multiple paragraphs at once?<span class="faq-arrow">▾</span></button>
+      <div class="faq-a">Yes. Paste your multi-paragraph text into the input box. All conversions fully support multi-line and multi-paragraph input while preserving newlines and spacing.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What does the word and character counter include?<span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><strong>Characters</strong> includes every character including spaces. <strong>Words</strong> counts whitespace-separated tokens. <strong>Sentences</strong> counts occurrences of . ! ? punctuation. <strong>Lines</strong> counts newline-separated rows. <strong>Paragraphs</strong> counts blocks separated by blank lines.</div>
+    </div>
+  </div>
+
+  <!--
+  ═══════════════════════════════════════════════════════
+  ADSENSE SLOT 3 — Bottom Leaderboard (Responsive)
+  ═══════════════════════════════════════════════════════
+  <div class="adsense-label">Advertisement</div>
+  <div class="adsense-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  -->
+
+  <div id="about" class="policy-section">
+    <h2>About TextShift</h2>
+    <p>TextShift is a collection of free, privacy-first text utility tools built for writers, developers, students, and content creators. Every tool runs entirely in the browser — no accounts, no servers, no data collection.</p>
+    <p>Our mission is to provide fast, reliable, ad-supported text utilities that respect your privacy. We believe simple tools should be simple to use.</p>
+    <h3 id="contact">Contact Us</h3>
+    <p>Have feedback, a bug report, or a feature request? Email us at <strong>hello@textshift.tools</strong> — we read every message.</p>
+  </div>
+
+  <div id="privacy" class="policy-section">
+    <h2>Privacy Policy</h2>
+    <p><em>Last updated: January 2026</em></p>
+    <h3>Information We Collect</h3>
+    <p>TextShift does not collect or store any text you enter into the tool. All text processing happens locally in your web browser using JavaScript. We do not have access to any content you type or paste.</p>
+    <h3>Cookies and Analytics</h3>
+    <p>We may use anonymous analytics tools (such as Google Analytics) to understand aggregate traffic patterns. These analytics do not identify individual users.</p>
+    <h3>Advertising</h3>
+    <p>This site is supported by advertising through Google AdSense. Google, as a third-party vendor, uses cookies to serve ads based on your prior visits to this website or other websites. You may opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener" style="color:var(--accent)">Google's Ad Settings</a>. For more information see <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener" style="color:var(--accent)">Google's Privacy &amp; Terms</a>.</p>
+    <h3>Third-Party Links</h3>
+    <p>Our website may contain links to external websites. We are not responsible for the privacy practices or content of those sites.</p>
+    <h3>Children's Privacy</h3>
+    <p>TextShift does not knowingly collect any data from children under the age of 13. The service is intended for general audiences.</p>
+    <h3>Changes to This Policy</h3>
+    <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated date.</p>
+    <h3>Contact</h3>
+    <p>For privacy-related enquiries, contact us at <strong>privacy@textshift.tools</strong>.</p>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">Home</a>·<a href="#more-tools">Tools</a>·<a href="#about">About</a>·<a href="#privacy">Privacy Policy</a>·<a href="#contact">Contact</a>
+    </div>
+    <p>&copy; 2026 TextShift · Free Online Text Tools · Made with ♥ for writers &amp; developers</p>
+  </footer>
+
+</div>
+
+<script>
+  const input=document.getElementById('inputText');
+  const output=document.getElementById('outputText');
+  const modeLabel=document.getElementById('modeLabel');
+  let currentMode='';
+  const modeNames={upper:'UPPER CASE',lower:'lower case',sentence:'Sentence case',title:'Title Case',camel:'camelCase',pascal:'PascalCase',snake:'snake_case',kebab:'kebab-case',inverse:'iNVERSE cASE',alternate:'aLtErNaTe cAsE'};
+
+  input.addEventListener('input',()=>{updateStats();if(currentMode)convert(currentMode);});
+
+  function updateStats(){
+    const txt=input.value.trim();
+    document.getElementById('wordCount').textContent=txt?txt.split(/\s+/).filter(Boolean).length:0;
+    document.getElementById('charCount2').textContent=input.value.length;
+    document.getElementById('sentCount').textContent=txt?(txt.match(/[.!?]+/g)||[]).length:0;
+    document.getElementById('lineCount').textContent=txt?input.value.split('\n').length:0;
+    document.getElementById('paraCount').textContent=txt?input.value.split(/\n\s*\n/).filter(p=>p.trim()).length||1:0;
+    document.getElementById('charCount').textContent=input.value.length;
+  }
+
+  function convert(mode){
+    currentMode=mode;
+    const txt=input.value;
+    if(!txt.trim()){output.textContent='Your converted text will appear here…';output.classList.add('empty');modeLabel.textContent='— Select a conversion above —';return;}
+    document.querySelectorAll('.case-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector(`[data-mode="${mode}"]`)?.classList.add('active');
+    modeLabel.textContent=modeNames[mode]+' ✓';
+    let result='';
+    const minor=['a','an','the','and','but','or','for','nor','on','at','to','by','in','of','up'];
+    switch(mode){
+      case 'upper': result=txt.toUpperCase(); break;
+      case 'lower': result=txt.toLowerCase(); break;
+      case 'sentence': result=txt.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g,c=>c.toUpperCase()); break;
+      case 'title': result=txt.toLowerCase().replace(/\b\w+/g,(w,i)=>(i===0||!minor.includes(w))?w[0].toUpperCase()+w.slice(1):w); break;
+      case 'camel': result=txt.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g,(_,c)=>c.toUpperCase()).replace(/^./,c=>c.toLowerCase()); break;
+      case 'pascal': result=txt.toLowerCase().replace(/(^|[^a-zA-Z0-9]+)(.)/g,(_,__,c)=>c.toUpperCase()); break;
+      case 'snake': result=txt.trim().toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,''); break;
+      case 'kebab': result=txt.trim().toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,''); break;
+      case 'inverse': result=[...txt].map(c=>c===c.toUpperCase()?c.toLowerCase():c.toUpperCase()).join(''); break;
+      case 'alternate': let i=0;result=[...txt].map(c=>/[a-zA-Z]/.test(c)?(i++%2===0?c.toLowerCase():c.toUpperCase()):c).join(''); break;
+    }
+    output.textContent=result;
+    output.classList.remove('empty');
+  }
+
+  function copyOutput(){
+    const txt=output.textContent;
+    if(!txt||output.classList.contains('empty'))return;
+    navigator.clipboard.writeText(txt).then(()=>{
+      const btn=document.getElementById('copyBtn');
+      btn.textContent='Copied!';btn.classList.add('copy-success');
+      showToast();
+      setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copy-success');},2000);
+    });
+  }
+
+  function clearAll(){
+    input.value='';output.textContent='Your converted text will appear here…';
+    output.classList.add('empty');modeLabel.textContent='— Select a conversion above —';
+    currentMode='';document.querySelectorAll('.case-btn').forEach(b=>b.classList.remove('active'));updateStats();
+  }
+
+  function showToast(){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+  function toggleFaq(btn){btn.closest('.faq-item').classList.toggle('open');}
+  updateStats();
+</script>
+</body>
+</html>
